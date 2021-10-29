@@ -14,6 +14,14 @@ Begin VB.Form Form1
    ScaleWidth      =   8655
    ShowInTaskbar   =   0   'False
    StartUpPosition =   3  'Windows-Standard
+   Begin VB.CommandButton Command1 
+      Caption         =   "Command1"
+      Height          =   375
+      Left            =   1320
+      TabIndex        =   3
+      Top             =   480
+      Width           =   1095
+   End
    Begin VB.ComboBox Combo1 
       Height          =   315
       ItemData        =   "Form1.frx":1782
@@ -50,6 +58,13 @@ Attribute VB_Exposed = False
 Option Explicit
 Dim OldFormat As String
 
+Private Sub Command1_Click()
+    
+    MsgBox Date_ParseFromDayNumber(2011, 220)
+    MsgBox Date_ParseFromDayNumber(2011, 290)
+    
+End Sub
+
 Private Sub Form_Load()
     With Combo1
         .AddItem "Long Date"
@@ -77,6 +92,7 @@ Private Sub Form_Load()
     Text1.Text = Format(Now, Combo1.Text) 'Left(Combo1.Text, 1)) ' '"14. feb. 1995"
     'Text1_LostFocus
 End Sub
+
 Private Sub Combo1_Click()
     Dim d As Date:
     If Date_TryParse(Text1.Text, d) Then
@@ -85,6 +101,56 @@ Private Sub Combo1_Click()
     OldFormat = Combo1.Text
 End Sub
 
+Function Date_ParseFromDayNumber(ByVal y As Integer, ByVal DayNr As Integer) As Date
+    Dim mds As Integer
+    
+    mds = 31
+    If DayNr <= mds Then Date_ParseFromDayNumber = DateSerial(y, 1, DayNr): Exit Function
+    DayNr = DayNr - mds
+    
+    mds = 28 - CInt(IsLeapYear(y))
+    If DayNr <= mds Then Date_ParseFromDayNumber = DateSerial(y, 2, DayNr): Exit Function
+    DayNr = DayNr - mds
+    
+    mds = 31
+    If DayNr <= mds Then Date_ParseFromDayNumber = DateSerial(y, 3, DayNr): Exit Function
+    DayNr = DayNr - mds
+    
+    mds = 30
+    If DayNr <= mds Then Date_ParseFromDayNumber = DateSerial(y, 4, DayNr): Exit Function
+    DayNr = DayNr - mds
+    
+    mds = 31
+    If DayNr <= mds Then Date_ParseFromDayNumber = DateSerial(y, 5, DayNr): Exit Function
+    DayNr = DayNr - mds
+    
+    mds = 30
+    If DayNr <= mds Then Date_ParseFromDayNumber = DateSerial(y, 6, DayNr): Exit Function
+    DayNr = DayNr - mds
+    
+    mds = 31
+    If DayNr <= mds Then Date_ParseFromDayNumber = DateSerial(y, 7, DayNr): Exit Function
+    DayNr = DayNr - mds
+    
+    mds = 31
+    If DayNr <= mds Then Date_ParseFromDayNumber = DateSerial(y, 8, DayNr): Exit Function
+    DayNr = DayNr - mds
+    
+    mds = 30
+    If DayNr <= mds Then Date_ParseFromDayNumber = DateSerial(y, 9, DayNr): Exit Function
+    DayNr = DayNr - mds
+    
+    mds = 31
+    If DayNr <= mds Then Date_ParseFromDayNumber = DateSerial(y, 10, DayNr): Exit Function
+    DayNr = DayNr - mds
+    
+    mds = 30
+    If DayNr <= mds Then Date_ParseFromDayNumber = DateSerial(y, 11, DayNr): Exit Function
+    DayNr = DayNr - mds
+    
+    mds = 31
+    If DayNr <= mds Then Date_ParseFromDayNumber = DateSerial(y, 12, DayNr): Exit Function
+End Function
 
 
 Private Sub Label1_Click()
@@ -135,7 +201,7 @@ Public Function DaysInMonth(ByVal year As Long, ByVal month As Long) As Long
     End Select
 End Function
 
-Public Function IsLeapYear(y As Long) As Boolean
+Public Function IsLeapYear(ByVal y As Long) As Boolean
 'Schaltjahr (LeapYear)
 'a leap year is a year which is
 'either (i.)
