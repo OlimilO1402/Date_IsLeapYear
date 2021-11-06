@@ -59,6 +59,17 @@ Option Explicit
 Dim OldFormat As String
 
 Private Sub Command1_Click()
+'1 220 1 1 472
+'MADE IN USA 2011 Worn Brown
+'
+'Y DDD Y B RRR
+'
+'1 290 1 1 379
+'MADE IN USA 2011 Worn Cherry
+'
+'001 - 499: Kalamazoo
+'500 - 999: Nashville
+    
     
     MsgBox Date_ParseFromDayNumber(2011, 220)
     MsgBox Date_ParseFromDayNumber(2011, 290)
