@@ -14,7 +14,7 @@ HelpContextID="0"
 CompatibleMode="0"
 MajorVer=2023
 MinorVer=6
-RevisionVer=5
+RevisionVer=9
 AutoIncrementVer=0
 ServerSupportFiles=0
 VersionCompanyName="MBO-Ing.com"
@@ -36,6 +36,7 @@ Unattended=0
 Retained=0
 ThreadPerObject=0
 MaxNumberOfThreads=1
+DebugStartupOption=0
 
 [MS Transaction Server]
 AutoRefresh=1
